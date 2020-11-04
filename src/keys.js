@@ -7,5 +7,5 @@ module.exports = {
       password: "lgtvype2i7i3vqv0",
       database: "pr862hc3lr0nd5g1"
     }
-  };
+};
   

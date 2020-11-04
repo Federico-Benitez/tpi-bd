@@ -5,6 +5,7 @@ const expresshbs = require('express-handlebars');
 const flash = require('connect-flash')
 const session = require("express-session");
 const mysqlStore = require("express-mysql-session");
+const passport = require('passport')
 
 
 const { database } = require("./keys");
@@ -12,7 +13,7 @@ const { database } = require("./keys");
 
 //Inicializaciones
 const app = express();
-
+require('./lib/passport')
 
 //Archivos Publicos (codigo que el navegador puede acceder)
 app.use(express.static(path.join(__dirname, "/public")));
@@ -49,7 +50,8 @@ app.use(flash())
 app.use(morgan("dev")); //para mostrar mensajes en consola con las solicitudes y que valor retorna
 app.use(express.urlencoded({ extended: false })); //aceptar desde el formulario los datos del usuario
 app.use(express.json());
-
+app.use(passport.initialize())
+app.use(passport.session())
 
 
 //Variables Globales
